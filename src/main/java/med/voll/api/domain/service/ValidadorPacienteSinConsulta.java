@@ -1,0 +1,29 @@
+package med.voll.api.domain.service;
+
+import med.voll.api.domain.model.gestion_medica.Medico;
+import med.voll.api.domain.model.gestion_pacientes.Paciente;
+import med.voll.api.domain.model.shared.DomainException;
+import med.voll.api.domain.repository.ConsultaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import java.time.LocalDateTime;
+
+@Component
+public class ValidadorPacienteSinConsulta implements ValidadorReservaConsulta {
+
+    @Autowired
+    private ConsultaRepository consultaRepository;
+
+    public void validar(Paciente paciente, Medico medico, LocalDateTime fecha) {
+        var primerHorario = fecha.withHour(7);
+        var ultimoHorario = fecha.withHour(18);
+
+        var pacienteTieneOtraConsultaEnElDia = consultaRepository.existsByPacienteIdAndFechaBetween(
+            paciente.getId(), primerHorario, ultimoHorario);
+
+        if (pacienteTieneOtraConsultaEnElDia) {
+            throw new DomainException("No se permite más de una consulta en el mismo día para el paciente");
+        }
+    }
+}

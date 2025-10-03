@@ -1,0 +1,356 @@
+{
+	"info": {
+		"_postman_id": "voll-med-api-ddd",
+		"name": "Voll Med API - DDD",
+		"description": "Colección completa de endpoints para la API de Voll Med con arquitectura DDD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8080"
+		},
+		{
+			"key": "token",
+			"value": ""
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{token}}",
+				"type": "string"
+			}
+		]
+	},
+	"item": [
+		{
+			"name": "🔐 Autenticación",
+			"item": [
+				{
+					"name": "Login - Obtener Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {",
+									"    var jsonData = pm.response.json();",
+									"    pm.collectionVariables.set('token', jsonData.jwTtoken);",
+									"    console.log('Token guardado:', jsonData.jwTtoken);",
+									"}"
+								]
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"admin@vollmed.com\",\n    \"clave\": \"123456\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": ["{{base_url}}"],
+							"path": ["login"]
+						},
+						"description": "Endpoint para autenticarse y obtener el token JWT"
+					}
+				}
+			]
+		},
+		{
+			"name": "👩‍⚕️ Gestión Médica",
+			"item": [
+				{
+					"name": "Registrar Médico",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Dr. Juan Carlos Pérez\",\n    \"email\": \"juan.perez@vollmed.com\",\n    \"telefono\": \"555-0123\",\n    \"documento\": \"12345678901\",\n    \"especialidad\": \"CARDIOLOGIA\",\n    \"direccion\": {\n        \"calle\": \"Avenida Principal\",\n        \"distrito\": \"Centro\",\n        \"ciudad\": \"São Paulo\",\n        \"numero\": \"123\",\n        \"complemento\": \"Consultorio 4B\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/medicos",
+							"host": ["{{base_url}}"],
+							"path": ["medicos"]
+						},
+						"description": "Registra un nuevo médico en el sistema. Especialidades disponibles: ORTOPEDIA, CARDIOLOGIA, GINECOLOGIA, DERMATOLOGIA"
+					}
+				},
+				{
+					"name": "Listar Médicos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/medicos?page=0&size=10&sort=nombre,asc",
+							"host": ["{{base_url}}"],
+							"path": ["medicos"],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Número de página (inicia en 0)"
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"description": "Cantidad de elementos por página"
+								},
+								{
+									"key": "sort",
+									"value": "nombre,asc",
+									"description": "Campo y dirección de ordenamiento"
+								}
+							]
+						},
+						"description": "Obtiene una lista paginada de médicos activos"
+					}
+				},
+				{
+					"name": "Obtener Médico por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/medicos/1",
+							"host": ["{{base_url}}"],
+							"path": ["medicos", "1"]
+						},
+						"description": "Obtiene los detalles de un médico específico por su ID"
+					}
+				},
+				{
+					"name": "Actualizar Médico",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"nombre\": \"Dr. Juan Carlos Pérez Actualizado\",\n    \"documento\": \"12345678901\",\n    \"direccion\": {\n        \"calle\": \"Nueva Avenida Principal\",\n        \"distrito\": \"Centro Actualizado\",\n        \"ciudad\": \"São Paulo\",\n        \"numero\": \"456\",\n        \"complemento\": \"Nuevo Consultorio 5A\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/medicos",
+							"host": ["{{base_url}}"],
+							"path": ["medicos"]
+						},
+						"description": "Actualiza los datos de un médico existente"
+					}
+				},
+				{
+					"name": "Eliminar Médico",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/medicos/1",
+							"host": ["{{base_url}}"],
+							"path": ["medicos", "1"]
+						},
+						"description": "Desactiva un médico (eliminación lógica)"
+					}
+				}
+			]
+		},
+		{
+			"name": "👤 Gestión de Pacientes",
+			"item": [
+				{
+					"name": "Registrar Paciente",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"María González\",\n    \"email\": \"maria.gonzalez@email.com\",\n    \"telefono\": \"555-9876\",\n    \"documento\": \"98765432109\",\n    \"direccion\": {\n        \"calle\": \"Rua das Flores\",\n        \"distrito\": \"Jardim Paulista\",\n        \"ciudad\": \"São Paulo\",\n        \"numero\": \"789\",\n        \"complemento\": \"Apartamento 12B\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/pacientes",
+							"host": ["{{base_url}}"],
+							"path": ["pacientes"]
+						},
+						"description": "Registra un nuevo paciente en el sistema"
+					}
+				},
+				{
+					"name": "Listar Pacientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pacientes?page=0&size=10&sort=nombre,asc",
+							"host": ["{{base_url}}"],
+							"path": ["pacientes"],
+							"query": [
+								{
+									"key": "page",
+									"value": "0",
+									"description": "Número de página (inicia en 0)"
+								},
+								{
+									"key": "size",
+									"value": "10",
+									"description": "Cantidad de elementos por página"
+								},
+								{
+									"key": "sort",
+									"value": "nombre,asc",
+									"description": "Campo y dirección de ordenamiento"
+								}
+							]
+						},
+						"description": "Obtiene una lista paginada de pacientes activos"
+					}
+				},
+				{
+					"name": "Obtener Paciente por ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pacientes/1",
+							"host": ["{{base_url}}"],
+							"path": ["pacientes", "1"]
+						},
+						"description": "Obtiene los detalles de un paciente específico por su ID"
+					}
+				},
+				{
+					"name": "Actualizar Paciente",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"nombre\": \"María González Silva\",\n    \"telefono\": \"555-9999\",\n    \"direccion\": {\n        \"calle\": \"Nueva Rua das Flores\",\n        \"distrito\": \"Jardim Paulista\",\n        \"ciudad\": \"São Paulo\",\n        \"numero\": \"999\",\n        \"complemento\": \"Apartamento 15C\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/pacientes",
+							"host": ["{{base_url}}"],
+							"path": ["pacientes"]
+						},
+						"description": "Actualiza los datos de un paciente existente"
+					}
+				},
+				{
+					"name": "Eliminar Paciente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/pacientes/1",
+							"host": ["{{base_url}}"],
+							"path": ["pacientes", "1"]
+						},
+						"description": "Desactiva un paciente (eliminación lógica)"
+					}
+				}
+			]
+		},
+		{
+			"name": "📅 Gestión de Consultas",
+			"item": [
+				{
+					"name": "Reservar Consulta - Con Médico Específico",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idPaciente\": 1,\n    \"idMedico\": 1,\n    \"fecha\": \"2025-01-15T14:30:00\",\n    \"especialidad\": null\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/consultas",
+							"host": ["{{base_url}}"],
+							"path": ["consultas"]
+						},
+						"description": "Reserva una consulta con un médico específico. La fecha debe ser al menos 30 minutos en el futuro y en horario de funcionamiento (Lun-Sáb 7:00-19:00)"
+					}
+				},
+				{
+					"name": "Reservar Consulta - Por Especialidad",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idPaciente\": 1,\n    \"idMedico\": null,\n    \"fecha\": \"2025-01-16T10:00:00\",\n    \"especialidad\": \"CARDIOLOGIA\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/consultas",
+							"host": ["{{base_url}}"],
+							"path": ["consultas"]
+						},
+						"description": "Reserva una consulta por especialidad. El sistema seleccionará automáticamente un médico disponible. Especialidades: ORTOPEDIA, CARDIOLOGIA, GINECOLOGIA, DERMATOLOGIA"
+					}
+				},
+				{
+					"name": "Cancelar Consulta",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idConsulta\": 1,\n    \"motivo\": \"PACIENTE_DESISTIO\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}/consultas",
+							"host": ["{{base_url}}"],
+							"path": ["consultas"]
+						},
+						"description": "Cancela una consulta existente. Motivos disponibles: PACIENTE_DESISTIO, MEDICO_CANCELO, OTROS. Debe cancelarse con al menos 24 horas de anticipación."
+					}
+				}
+			]
+		}
+	]
+}
+
