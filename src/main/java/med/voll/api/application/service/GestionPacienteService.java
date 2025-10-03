@@ -2,9 +2,9 @@ package med.voll.api.application.service;
 
 import med.voll.api.application.dto.request.DatosActualizacionPaciente;
 import med.voll.api.application.dto.request.DatosRegistroPaciente;
-import med.voll.api.domain.model.gestion_pacientes.Paciente;
+import med.voll.api.domain.entities.Paciente;
 import med.voll.api.domain.repository.PacienteRepository;
-import med.voll.api.domain.model.shared.Direccion;
+import med.voll.api.domain.value_objects.Direccion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -37,7 +37,8 @@ public class GestionPacienteService {
 
     public Paciente actualizarPaciente(DatosActualizacionPaciente datos) {
         Paciente paciente = pacienteRepository.getReferenceById(datos.id());
-        Direccion nuevaDireccion = datos.direccion() != null ? new Direccion(datos.direccion()) : null;
+        Direccion nuevaDireccion = datos.direccion() != null ?
+            paciente.getDireccion().actualizar(datos.direccion()) : null;
         paciente.actualizarInformacion(datos.nombre(), datos.telefono(), nuevaDireccion);
         return paciente;
     }

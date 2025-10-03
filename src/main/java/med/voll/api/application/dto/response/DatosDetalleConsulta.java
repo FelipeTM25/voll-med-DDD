@@ -1,6 +1,6 @@
 package med.voll.api.application.dto.response;
 
-import med.voll.api.domain.model.consultas_medicas.Consulta;
+import med.voll.api.domain.aggregates.Consulta;
 
 import java.time.LocalDateTime;
 

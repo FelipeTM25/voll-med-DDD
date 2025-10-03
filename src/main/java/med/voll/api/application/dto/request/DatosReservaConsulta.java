@@ -1,6 +1,8 @@
 package med.voll.api.application.dto.request;
 
-import med.voll.api.domain.model.gestion_medica.Especialidad;
+import jakarta.validation.constraints.Future;
+import jakarta.validation.constraints.NotNull;
+import med.voll.api.domain.value_objects.Especialidad;
 
 import java.time.LocalDateTime;
 

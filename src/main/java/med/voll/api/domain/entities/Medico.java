@@ -1,10 +1,10 @@
-package med.voll.api.domain.model.gestion_medica;
+package med.voll.api.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
-import med.voll.api.domain.model.shared.AggregateRoot;
-import med.voll.api.domain.model.shared.Direccion;
-import med.voll.api.domain.model.gestion_medica.Especialidad;
+import med.voll.api.domain.shared.AggregateRoot;
+import med.voll.api.domain.value_objects.Direccion;
+import med.voll.api.domain.value_objects.Especialidad;
 
 @Table(name = "medicos")
 @Entity(name = "Medico")

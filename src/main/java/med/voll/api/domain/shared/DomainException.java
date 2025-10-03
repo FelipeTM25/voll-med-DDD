@@ -1,4 +1,4 @@
-package med.voll.api.domain.model.shared;
+package med.voll.api.domain.shared;
 
 public class DomainException extends RuntimeException {
     public DomainException(String message) {

@@ -1,4 +1,4 @@
-package med.voll.api.domain.model.shared;
+package med.voll.api.domain.shared;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;

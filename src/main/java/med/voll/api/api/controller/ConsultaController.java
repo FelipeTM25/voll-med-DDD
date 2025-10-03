@@ -5,7 +5,7 @@ import med.voll.api.application.dto.request.DatosReservaConsulta;
 import med.voll.api.application.dto.request.DatosCancelamientoConsulta;
 import med.voll.api.application.dto.response.DatosDetalleConsulta;
 import med.voll.api.application.service.GestionConsultaService;
-import med.voll.api.domain.model.consultas_medicas.Consulta;
+import med.voll.api.domain.aggregates.Consulta;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

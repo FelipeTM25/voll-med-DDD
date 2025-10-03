@@ -1,11 +1,11 @@
-package med.voll.api.domain.model.consultas_medicas;
+package med.voll.api.domain.aggregates;
 
 import jakarta.persistence.*;
 import lombok.*;
-import med.voll.api.domain.model.shared.AggregateRoot;
-import med.voll.api.domain.model.gestion_medica.Medico;
-import med.voll.api.domain.model.gestion_pacientes.Paciente;
-import med.voll.api.domain.model.consultas_medicas.MotivoCancelamiento;
+import med.voll.api.domain.shared.AggregateRoot;
+import med.voll.api.domain.entities.Medico;
+import med.voll.api.domain.entities.Paciente;
+import med.voll.api.domain.value_objects.MotivoCancelamiento;
 
 import java.time.LocalDateTime;
 

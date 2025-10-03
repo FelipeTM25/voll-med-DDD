@@ -1,7 +1,7 @@
 package med.voll.api.application.dto.response;
 
-import med.voll.api.domain.model.gestion_medica.Medico;
-import med.voll.api.domain.model.gestion_medica.Especialidad;
+import med.voll.api.domain.entities.Medico;
+import med.voll.api.domain.value_objects.Especialidad;
 
 public record DatosRespuestaMedico(
         Long id,

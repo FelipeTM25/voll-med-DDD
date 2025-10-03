@@ -1,8 +1,9 @@
 package med.voll.api.application.dto.request;
 
-import med.voll.api.domain.model.consultas_medicas.MotivoCancelamiento;
+import jakarta.validation.constraints.NotNull;
+import med.voll.api.domain.value_objects.MotivoCancelamiento;
 
 public record DatosCancelamientoConsulta(
         Long idConsulta,
-        MotivoCancelamiento motivo) {
+        @NotNull MotivoCancelamiento motivo) {
 }

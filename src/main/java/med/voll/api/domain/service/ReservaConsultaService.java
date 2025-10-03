@@ -1,13 +1,13 @@
 package med.voll.api.domain.service;
 
-import med.voll.api.domain.model.consultas_medicas.Consulta;
+import med.voll.api.domain.aggregates.Consulta;
+import med.voll.api.domain.entities.Medico;
+import med.voll.api.domain.entities.Paciente;
 import med.voll.api.domain.repository.ConsultaRepository;
-import med.voll.api.domain.model.gestion_medica.Medico;
 import med.voll.api.domain.repository.MedicoRepository;
-import med.voll.api.domain.model.gestion_medica.Especialidad;
-import med.voll.api.domain.model.gestion_pacientes.Paciente;
 import med.voll.api.domain.repository.PacienteRepository;
-import med.voll.api.domain.model.shared.DomainException;
+import med.voll.api.domain.shared.DomainException;
+import med.voll.api.domain.value_objects.Especialidad;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

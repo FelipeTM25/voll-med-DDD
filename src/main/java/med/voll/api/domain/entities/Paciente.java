@@ -1,11 +1,11 @@
-package med.voll.api.domain.model.gestion_pacientes;
+package med.voll.api.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import med.voll.api.domain.model.shared.AggregateRoot;
-import med.voll.api.domain.model.shared.Direccion;
+import med.voll.api.domain.shared.AggregateRoot;
+import med.voll.api.domain.value_objects.Direccion;
 
 @Getter
 @NoArgsConstructor

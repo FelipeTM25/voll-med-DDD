@@ -1,4 +1,4 @@
-package med.voll.api.domain.model.consultas_medicas;
+package med.voll.api.domain.value_objects;
 
 public enum MotivoCancelamiento {
     PACIENTE_DESISTIO,

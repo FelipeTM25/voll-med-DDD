@@ -4,7 +4,7 @@ import jakarta.validation.Valid;
 import med.voll.api.application.dto.request.*;
 import med.voll.api.application.dto.response.*;
 import med.voll.api.application.service.GestionMedicoService;
-import med.voll.api.domain.model.gestion_medica.Medico;
+import med.voll.api.domain.entities.Medico;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
