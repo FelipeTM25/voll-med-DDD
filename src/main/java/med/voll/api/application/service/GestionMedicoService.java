@@ -1,7 +1,7 @@
 package med.voll.api.application.service;
 
-import med.voll.api.api.request.DatosActualizarMedico;
-import med.voll.api.api.request.DatosRegistroMedico;
+import med.voll.api.application.dto.request.DatosActualizarMedico;
+import med.voll.api.application.dto.request.DatosRegistroMedico;
 import med.voll.api.domain.model.gestion_medica.Medico;
 import med.voll.api.domain.repository.MedicoRepository;
 import med.voll.api.domain.model.shared.Direccion;

@@ -1,4 +1,4 @@
-package med.voll.api.api.request;
+package med.voll.api.application.dto.request;
 
 import med.voll.api.application.dto.DatosDireccion;
 

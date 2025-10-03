@@ -1,7 +1,7 @@
 package med.voll.api.application.service;
 
-import med.voll.api.api.request.DatosCancelamientoConsulta;
-import med.voll.api.api.request.DatosReservaConsulta;
+import med.voll.api.application.dto.request.DatosCancelamientoConsulta;
+import med.voll.api.application.dto.request.DatosReservaConsulta;
 import med.voll.api.domain.model.consultas_medicas.Consulta;
 import med.voll.api.domain.service.CancelacionConsultaService;
 import med.voll.api.domain.service.ReservaConsultaService;

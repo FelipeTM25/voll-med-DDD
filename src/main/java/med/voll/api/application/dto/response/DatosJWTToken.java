@@ -1,4 +1,4 @@
-package med.voll.api.api.response;
+package med.voll.api.application.dto.response;
 
 public record DatosJWTToken(String jwTtoken) {
 }

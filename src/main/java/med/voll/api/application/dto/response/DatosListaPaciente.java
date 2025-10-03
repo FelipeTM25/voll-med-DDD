@@ -1,4 +1,4 @@
-package med.voll.api.api.response;
+package med.voll.api.application.dto.response;
 
 import med.voll.api.domain.model.gestion_pacientes.Paciente;
 

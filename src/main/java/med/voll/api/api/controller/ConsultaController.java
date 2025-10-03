@@ -1,9 +1,9 @@
 package med.voll.api.api.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api.api.request.DatosReservaConsulta;
-import med.voll.api.api.request.DatosCancelamientoConsulta;
-import med.voll.api.api.response.DatosDetalleConsulta;
+import med.voll.api.application.dto.request.DatosReservaConsulta;
+import med.voll.api.application.dto.request.DatosCancelamientoConsulta;
+import med.voll.api.application.dto.response.DatosDetalleConsulta;
 import med.voll.api.application.service.GestionConsultaService;
 import med.voll.api.domain.model.consultas_medicas.Consulta;
 import org.springframework.beans.factory.annotation.Autowired;

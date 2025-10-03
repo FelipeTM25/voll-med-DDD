@@ -1,8 +1,8 @@
 package med.voll.api.api.controller;
 
 import jakarta.validation.Valid;
-import med.voll.api.api.request.*;
-import med.voll.api.api.response.*;
+import med.voll.api.application.dto.request.*;
+import med.voll.api.application.dto.response.*;
 import med.voll.api.application.service.GestionMedicoService;
 import med.voll.api.domain.model.gestion_medica.Medico;
 import org.springframework.beans.factory.annotation.Autowired;
